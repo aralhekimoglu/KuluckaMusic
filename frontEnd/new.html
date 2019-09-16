@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Add New Song | Kulucka MP3 </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/new.js"></script>
+
+</head>
+<body>
+
+<!--Navbar-->
+
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a href="file:///Users/aralhekmoglu/kulucka/frontEnd/index.html" class="navbar-brand"><i class="glyphicon glyphicon-music"></i>Kulucka MP3<i class="glyphicon glyphicon-music"></i></a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+        <ul class="nav navbar-nav">
+            <li><a href="file:///Users/aralhekmoglu/kulucka/frontEnd/new.html">New Song</a></li>
+            <li><a href="file:///Users/aralhekmoglu/kulucka/frontEnd/index.html">Songs</a></li>
+        </ul>
+    
+        <div class="col-sm-3 col-md-3 pull-right">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Song..." name="srch-term" id="srch-term">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+        </div>
+
+    </div>
+</div>
+
+<!--Navbar-->
+
+<div id="container" style="width:75%;">
+<form id="newForm" action="" method="post">
+    
+    <div class="form-group">
+        <label for="song_name">Song Name</label>
+        <input id="sn" type="text" class="form-control" name="song_name" value=""/>
+    </div>
+
+     <div class="form-group">
+        <label for="singer_name">Singer</label>
+        <input id="ss" type="text" class="form-control" name="singer_name"  value=""/>
+    </div>
+
+     <div class="form-group">
+        <label for="genre">Genre</label>
+        <input id="sg" type="text" class="form-control" name="genre"  value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch1[url]">URL 1</label>
+        <input id="u1" type="text" class="form-control" name="ch1[url]"  value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch2[url]">URL 2</label>
+        <input id="u2" type="text" class="form-control" name="ch2[url]" value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch3[url]">URL 3</label>
+        <input id="u3" type="text" class="form-control" name="ch3[url]" value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch4[url]">URL 4</label>
+        <input id="u4" type="text" class="form-control" name="ch4[url]" value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch5[url]">URL 5</label>
+        <input id="u5" type="text" class="form-control" name="ch5[url]" value=""/>
+    </div>
+
+    <div class="form-group">
+        <label for="ch6[url]">URL 6</label>
+        <input id="u6" type="text" class="form-control" name="ch6[url]" value=""/>
+    </div>
+
+    <div class="form-group">
+        <input id="submitButton" type="button" value="Add New Song" class="btn btn-default" name="submit" onclick="location.href='file:///Users/aralhekmoglu/kulucka/frontEnd/index.html'"/>
+    </div>
+</form>
+</div>
+
+</body> 
+</html>

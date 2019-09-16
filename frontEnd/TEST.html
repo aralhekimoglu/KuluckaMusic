@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>jQuery.grep demo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+ 
+<div></div>
+<p></p>
+<span></span>
+ 
+<script>
+$.ajax({
+     url:"http://localhost:3000/channels.json",
+     success:function(data){
+        var matches = $.grep(data, function(param) { return param.song_id == 1 });
+        console.log(matches);
+        chan1u=matches[0].url;
+        chan2u=matches[1].url;
+        chan3u=matches[2].url;
+        chan4u=matches[3].url;
+        chan5u=matches[4].url;
+        chan6u=matches[5].url;
+     
+        $("#ch1Url").attr("value",chan1u);
+        $("#ch2Url").attr("value",chan2u);
+        $("#ch3Url").attr("value",chan3u);
+        $("#ch4Url").attr("value",chan4u);
+        $("#ch5Url").attr("value",chan5u);
+        $("#ch6Url").attr("value",chan6u);
+}});
+</script>
+ 
+</body>
+</html>

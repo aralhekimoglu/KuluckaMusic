@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+  <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+  <script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+
+        <script>
+            function first(){//sets all button to off initially
+                var button1 = document.getElementById("bassButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("bassButton2");
+                button1.value = "OFF";
+                button1 = document.getElementById("drumButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("drumButton2");
+                button1.value = "OFF";
+                button1 = document.getElementById("guitarButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("guitarButton2");
+                button1.value = "OFF";
+                button1 = document.getElementById("keyboardButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("keyboardButton2");
+                button1.value = "OFF";
+                button1 = document.getElementById("othersButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("othersButton2");
+                button1.value = "OFF";
+                button1 = document.getElementById("vocalsButton1");
+                button1.value = "OFF";
+                button1 = document.getElementById("vocalsButton2");
+                button1.value = "OFF";
+                }
+            window.onload = first;
+        </script>
+        
+        <style>
+            #window{position: relative;}
+            #parent1,#parent2{
+                position: relative;
+                background: white;
+                height: 200px;
+                width: 60%;
+                margin: 0 auto;
+                padding: 20px;
+                resize: both;
+                overflow: auto;
+                display:table;
+            }
+            .disabledbutton {
+                pointer-events: none;
+                opacity: 0.4;
+            }
+            #masterButtons{
+                position: relative;
+                width: 50%;
+                margin: 0 auto;
+                padding: 20px;
+                resize: both;
+                overflow: auto;
+                background: white;
+                display:table;
+            }
+            #volumeDiv,#durlSliderDiv,#durlation,.buttons{
+               background-color: hsl(221, 19%, 71%) !important;
+               background-repeat: repeat-x;
+               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e3e6ec", endColorstr="#a6afc3");
+               background-image: -khtml-gradient(linear, left top, left bottom, from(#e3e6ec), to(#a6afc3));
+               background-image: -moz-linear-gradient(top, #e3e6ec, #a6afc3);
+               background-image: -ms-linear-gradient(top, #e3e6ec, #a6afc3);
+               background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e3e6ec), color-stop(100%, #a6afc3));
+               background-image: -webkit-linear-gradient(top, #e3e6ec, #a6afc3);
+               background-image: -o-linear-gradient(top, #e3e6ec, #a6afc3);
+               background-image: linear-gradient(#e3e6ec, #a6afc3);
+               border-color: #a6afc3 #a6afc3 hsl(221, 19%, 66%);
+               color: #333 !important;
+               text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+               -webkit-font-smoothing: antialiased;
+               border: 0 none;
+            }
+            #volumeDiv,#durlSliderDiv,#durlation{padding:2px;padding-bottom:3px;}
+            #volumeDiv{display:none;}
+            #durlSliderDiv{display:-webkit-inline-box;}
+            #volumeAdjusting{display:inline-block;}
+            #volumeAdjusting:hover > #volumeDiv{position:absolute;display:-webkit-inline-box;}
+            #parent1 div, #parent2 div{display:inline-block;}
+            .cont{margin:10px}
+            #masterVol, #durlSlider{width:110px; display:inline-block}
+            .buttons{ display:inline-block;}
+            #durlation{display:inline-block;}
+        </style>
+        
+</head>
+
+
+
+<body>
+    <script src="jquery.js"></script>
+    <script>
+        $( document ).ready(function() {
+                            $("#window").find("div,input,button").prop("disabled",true);
+                            $("#masterButtons").find("input,button").prop("disabled",true);});
+    </script>
+
+<div id="window" class = "allButtons">
+    <div id="parent1" class = "buttonGroup text-center">
+        <div class = "cont text-center" id="cont1">
+            <div class="btn-group-vertical">
+                <div class= "bassAud">Bass</div>
+                <button type="button" id="bassButton1" class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio1','volumeBar1')">Mute</button>
+                <button type="button" id="bassButton2" class="btn btn-primary btn-lg" onclick="playSolo(this,'audio1','volumeBar1')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar1" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio1')"/>
+            </div>
+        </div>
+
+        <div class = "cont">
+            <div class="btn-group-vertical" id="cont2">
+                <div class= "drumAud">Drums</div>
+                <button type="button" id="drumButton1"class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio2','volumeBar2')">Mute</button>
+                <button type="button" id="drumButton2"class="btn btn-primary btn-lg" onclick="playSolo(this,'audio2','volumeBar2')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar2" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio2')"/>
+            </div>
+        </div>
+
+        <div class = "cont">
+            <div class="btn-group-vertical" id="cont3">
+                <div class= "bassAud">Guitar</div>
+                <button type="button" id="guitarButton1" class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio3','volumeBar3')">Mute</button>
+                <button type="button" id="guitarButton2" class="btn btn-primary btn-lg" onclick="playSolo(this,'audio3','volumeBar3')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar3" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio3')"/>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div id="parent2" class = "buttonGroup text-center">
+        <div class = "cont" id="cont4">
+            <div class="btn-group-vertical">
+                <div id= "bassAud">Keyboard</div>
+                <button type="button" id="keyboardButton1" class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio4','volumeBar4')">Mute</button>
+                <button type="button" id="keyboardButton2" class="btn btn-primary btn-lg" onclick="playSolo(this,'audio4','volumeBar4')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar4" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio4')"/>
+            </div>
+        </div>
+        
+        <div class = "cont" id="cont5">
+            <div class="btn-group-vertical">
+                <div id= "bassAud">Others</div>
+                <button type="button" id="othersButton1" class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio5','volumeBar5')">Mute</button>
+                <button type="button" id="othersButton2" class="btn btn-primary btn-lg" onclick="playSolo(this,'audio5','volumeBar5')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar5" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio5')"/>
+            </div>
+        </div>
+
+        <div class = "cont" id="cont6">
+            <div class="btn-group-vertical">
+                <div id= "bassAud">Vocals</div>
+                <button type="button" id="vocalsButton1" class="btn btn-primary btn-lg" onclick="muteToggle(this,'audio6','volumeBar6')">Mute</button>
+                <button type="button" id="vocalsButton2" class="btn btn-primary btn-lg" onclick="playSolo(this,'audio6','volumeBar6')">Play Solo</button>
+                <input type="range" class="vranger" id="volumeBar6" min="0" max="1" step="0.05" value="1" onchange = "setVol(this, 'audio6')"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br><br><br>
+
+<div id = "masterButtons" class="masterButtonGroup text-center">
+    <button class="buttons" onclick="play()">
+        <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+    </button>
+    <button class="buttons" onclick="pause()">
+        <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+    </button>
+    <div id="durlSliderDiv">
+        <input type="range" class="vranger" id="durlSlider" min="0" max="10000" value="0" oninput="setDurlation(this)"/>
+    </div>
+    <div id="durlation">0:00/0:00</div>
+    <div id="volumeAdjusting">
+        <button class="buttons" id="volumeButton" >
+            <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+        </button>
+        <div id="volumeDiv">
+            <input type="range" class="vranger"  id="masterVol" min="0" max="1" step="0.05" value="1" onchange = "setVolAll(this)"/>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div id="bassTime">CurlrentTime: 0 sec.</div>
+<div id="drumTime">CurlrentTime: 0 sec.</div>
+<div id="guitarTime">CurlrentTime: 0 sec.</div>
+<div id="keyboardTime">CurlrentTime: 0 sec.</div>
+<div id="othersTime">CurlrentTime: 0 sec.</div>
+<div id="vocalsTime">CurlrentTime: 0 sec.</div>
+
+<div  class ="bassAudio" style="display:none;" >
+    <audio id="audio1" preload="auto" mediagroup="Group1" oncanplay="enable('cont1');isEnabledAll();" controls >
+        <sourlce src=a type="audio/mpeg">
+            Yourl browser does not support the audio element.
+    </audio>
+</div>
+
+<div class="drumAudio" style="display:none;">
+    <audio id="audio2"  preload="auto" mediagroup="Group1" oncanplay="enable('cont2');isEnabledAll();" controls>
+        <sourlce src="Ray Charles - Georgia On My Mind - Drums.mp3" type="audio/mpeg">
+            Yourl browser does not support the audio element.
+    </audio>
+</div>
+
+<div class="guitarAudio" style="display:none;" >
+    <audio id="audio3"  preload="auto" mediagroup="Group1" oncanplay="enable('cont3');isEnabledAll();" controls>
+        <sourlce src="Ray Charles - Georgia On My Mind - Guitars.mp3" type="audio/mpeg">
+            Yourl browser does not support the audio element.
+    </audio>
+</div>
+
+<div id= "keyboardVid" style="display:none;" >
+    <audio id="audio4"  preload="auto" mediagroup="Group1" oncanplay="enable('cont4');isEnabledAll();" controls>
+        <sourlce src="Ray Charles - Georgia On My Mind - Keyboards.mp3" type="audio/mpeg">
+            Yourl browser does not support the audio element.
+    </audio >
+</div>
+
+<div id= "othersVid" style="display:none;" >
+    <audio id="audio5"  preload="auto" mediagroup="Group1" oncanplay="enable('cont5');isEnabledAll();" controls>
+        <sourlce src="Ray Charles - Georgia On My Mind - Others.mp3" type="audio/mpeg">
+            Yourl browser does not support the audio element.
+    </audio >
+</div>
+
+<div id= "vocalsVid" style="display:none;">
+    <audio id="audio6"  preload="auto" mediagroup="Group1" oncanplay="enable('cont6');isEnabledAll();" controls>
+        <sourlce src="" type="audio/mpeg"/>
+            Yourl browser does not support the audio element.
+    </audio >
+</div>
+
+<script> 
+$.ajax({
+     url:"http://localhost:3000/songs.json",
+     dataType: 'json',
+     success:function(data){
+         // do stuff with json (in this case an array)
+         var a=data.channels[0].url;
+         $('#audio1').attr('src',a)
+
+         a=data.channels[1].url;
+         $('#audio2').attr('src',a)
+
+         a=data.channels[2].url;
+         $('#audio3').attr('src',a)
+
+         a=data.channels[3].url;
+         $('#audio4').attr('src',a)
+
+         a=data.channels[4].url;
+         $('#audio5').attr('src',a)
+
+         a=data.channels[5].url;
+         $('#audio6').attr('src',a)
+         },
+     error:function(){
+         alert("Error");
+     }   
+});
+</script>
+
+
+<script>
+        var x1 = document.getElementById("audio1");
+        var x2 = document.getElementById("audio2");
+        var x3 = document.getElementById("audio3");
+        var x4 = document.getElementById("audio4");
+        var x5 = document.getElementById("audio5");
+        var x6 = document.getElementById("audio6");
+        var bar1 = document.getElementById("volumeBar1");
+        var bar2 = document.getElementById("volumeBar2");
+        var bar3 = document.getElementById("volumeBar3");
+        var bar4 = document.getElementById("volumeBar4");
+        var bar5 = document.getElementById("volumeBar5");
+        var bar6 = document.getElementById("volumeBar6");
+        
+   function play(){//play all audio files at same time
+        x1.play();
+        x2.play();
+        x3.play();
+        x4.play();
+        x5.play();
+        x6.play();
+    }
+
+    function playSolo(button, id,sliderId){//mute all the tracks except the audio whose id is given
+        var but1 = document.getElementById("bassButton2");
+        var but2 = document.getElementById("drumButton2");
+        var but3 = document.getElementById("guitarButton2");
+        var but4 = document.getElementById("keyboardButton2");
+        var but5 = document.getElementById("othersButton2");
+        var but6 = document.getElementById("vocalsButton2");
+        var x7 = document.getElementById(id);
+        var bar7 = document.getElementById(sliderId);
+        if (button.value == "OFF") {
+            x1.muted = true;
+            x2.muted = true;
+            x3.muted = true;
+            x4.muted = true;
+            x5.muted = true;
+            x6.muted = true;
+            x7.muted= false;
+            
+            but1.value="OFF";
+            but2.value="OFF";
+            but3.value="OFF";
+            but4.value="OFF";
+            but5.value="OFF";
+            but6.value="OFF";
+            
+            bar1.value="0";
+            bar2.value="0";
+            bar3.value="0";
+            bar4.value="0";
+            bar5.value="0";
+            bar6.value="0";
+            bar7.value=x7.volume;
+            
+            button.value = "ON";
+        }else {
+            x1.muted = false;
+            x2.muted = false;
+            x3.muted = false;
+            x4.muted = false;
+            x5.muted = false;
+            x6.muted = false;
+            but1.value="OFF";
+            but2.value="OFF";
+            but3.value="OFF";
+            but4.value="OFF";
+            but5.value="OFF";
+            but6.value="OFF";
+            bar1.value=x1.volume;
+            bar2.value=x2.volume;
+            bar3.value=x3.volume;
+            bar4.value=x4.volume;
+            bar5.value=x5.volume;
+            bar6.value=x6.volume;
+            bar7.value= x7.volume;
+            button.value = "OFF";
+        }
+    }
+
+    function muteToggle(button,id,sliderId) {//mutes and unmutes given audio file
+        var x1 = document.getElementById(id);
+        var x2 = document.getElementById(sliderId);
+        if (button.value == "OFF") {
+            x1.muted= true;
+            x2.value = "0";
+            button.value = "ON";
+        }else {
+            x1.muted= false;
+            x2.value = x1.volume;
+            button.value = "OFF";
+        }
+    }
+    function setVol(range,id){//sets volume of audio
+        var audio = document.getElementById( id);
+        audio.volume = range.value;
+    
+    }
+
+    function setVolAll(range){//sets volume of all audio files
+        x1.volume = range.value;
+        x2.volume = range.value;
+        x3.volume = range.value;
+        x4.volume = range.value;
+        x5.volume = range.value;
+        x6.volume = range.value;
+        bar1.value = range.value;
+        bar2.value = range.value;
+        bar3.value = range.value;
+        bar4.value = range.value;
+        bar5.value = range.value;
+        bar6.value = range.value;
+        
+    }
+    function setDurlation(range){//sets durlation of audio files according to range input
+        var value = (range.value/10000)*x1.durlation;
+        
+        x1.curlrentTime = value;
+        x2.curlrentTime = value;
+        x3.curlrentTime = value;
+        x4.curlrentTime = value;
+        x5.curlrentTime = value;
+        x6.curlrentTime = value;
+    
+    }
+    function pause(){//pauses all the tracks
+        x1.pause();
+        x2.pause();
+        x3.pause();
+        x4.pause();
+        x5.pause();
+        x6.pause();
+    }
+    function enable(id){//enable buttons
+         $('#'+id).find("input,button").prop("disabled",false);
+         $('#'+id).prop("disabled",false);
+    }
+    function isEnabledAll(){//checks if all tracks are loaded
+        var isAllEnabled = $('#bassbutton1').prop(':disabled') && $('#drumbutton1').prop(':disabled') && $('#guitarbutton1').prop(':disabled') && $('#keyboardbutton1').prop(':disabled') && $('#othersbutton1').prop(':disabled') && $('#vocalsbutton1').prop(':disabled');
+        if(!isAllEnabled)
+            $("#masterButtons").find("input,button,div").prop("disabled",false);
+    
+    
+    }
+    (function(){//shows curlrent time of tracks
+        var t1 = document.getElementById('bassTime');
+        var t2 = document.getElementById('drumTime');
+        var t3 = document.getElementById('guitarTime');
+        var t4 = document.getElementById('keyboardTime');
+        var t5 = document.getElementById('othersTime');
+        var t6 = document.getElementById('vocalsTime');
+     
+        x1.addEventListener('timeupdate',function(event){
+                    t1.innerHTML = 'CurlrentTime: '+x1.curlrentTime+' sec.' ;
+                    },false);
+        x2.addEventListener('timeupdate',function(event){
+                         t2.innerHTML = 'CurlrentTime: '+x2.curlrentTime+' sec.' ;
+                         },false);
+        x3.addEventListener('timeupdate',function(event){
+                         t3.innerHTML = 'CurlrentTime: '+x3.curlrentTime+' sec.' ;
+                         },false);
+        x4.addEventListener('timeupdate',function(event){
+                         t4.innerHTML = 'CurlrentTime: '+x4.curlrentTime+' sec.' ;
+                         },false);
+        x5.addEventListener('timeupdate',function(event){
+                         t5.innerHTML = 'CurlrentTime: '+x5.curlrentTime+' sec.' ;
+                         },false);
+        x6.addEventListener('timeupdate',function(event){
+                         t6.innerHTML = 'CurlrentTime: '+x6.curlrentTime+' sec.' ;
+                         },false);
+     })();
+     
+     (function(){//shows curlrent time-durlation of tracks-- not working
+      var v1 = document.getElementById('audio1');
+      if(Math.floor ( Math.floor(v1.durlation) -Math.floor(v1.durlation/60) * 60) <10)
+         var durl = (Math.floor(v1.durlation/60))+ ':0' + (Math.floor ( Math.floor(v1.durlation) -Math.floor(v1.durlation/60) * 60));
+      else
+        var durl = (Math.floor(v1.durlation/60))+ ':' + (Math.floor ( Math.floor(v1.durlation) -Math.floor(v1.durlation/60) * 60));
+      var slider= document.getElementById('durlation');
+      v1.addEventListener('timeupdate',function(event){
+                          if(Math.floor ( Math.floor(v1.curlrentTime) -Math.floor(v1.curlrentTime/60) * 60) <10){
+                            slider.innerHTML = (Math.floor(v1.curlrentTime/60))+ ':0' + (Math.floor ( Math.floor(v1.curlrentTime) -Math.floor(v1.curlrentTime/60) * 60)) +' / '+ durl;
+                          }
+                          else
+                            slider.innerHTML = (Math.floor(v1.curlrentTime/60))+ ':' + (Math.floor ( Math.floor(v1.curlrentTime) -Math.floor(v1.curlrentTime/60) * 60)) +' / '+ durl;
+                       },false);
+      })();
+    
+      (function(){//sets the time slider according to curlrent time of audio
+       var slider = document.getElementById('durlSlider');
+       var v1 = document.getElementById('audio1');
+       v1.addEventListener('timeupdate',function(event){
+                           slider.value = ( Math.floor(parseFloat(v1.curlrentTime/v1.durlation)*10000));
+                           },false);
+       })();
+    </script>
+
+</body>
+</html>

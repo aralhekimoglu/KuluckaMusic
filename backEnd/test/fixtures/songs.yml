@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_at: 2016-07-29
+  singer_name: MyString
+  song_name: MyString
+  genre: MyString
+  tag: MyString
+
+two:
+  created_at: 2016-07-29
+  singer_name: MyString
+  song_name: MyString
+  genre: MyString
+  tag: MyString

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Songs | Kulucka MP3 </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!--Navbar-->
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a href="file:///Users/aralhekmoglu/kulucka/frontEnd/index.html" class="navbar-brand"><i class="glyphicon glyphicon-music"></i>Kulucka MP3<i class="glyphicon glyphicon-music"></i></a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+        <ul class="nav navbar-nav">
+            <li><a href="file:///Users/aralhekmoglu/kulucka/frontEnd/new.html">New Song</a></li>
+            <li><a href="file:///Users/aralhekmoglu/kulucka/frontEnd/index.html">Songs</a></li>
+        </ul>
+    
+        <div class="col-sm-3 col-md-3 pull-right">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Song..." name="srch-term" id="srch-term">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+        </div>
+
+    </div>
+</div>
+
+<!--Navbar-->
+
+<h3>Song List</h3>
+<table id="songTable" class="table">
+<tr><th>Song ID</th><th>Song Name</th><th>Singer</th><th>Genre</th><th>Edit</th></tr>
+</table>
+
+<h3>Channel List</h3>
+<table id="channelTable" class="table">
+<tr><th>Channel URL</th><th>Song ID</th></tr>
+</table>
+
+
+<script>
+$.ajax({
+     url:"http://localhost:3000/songs.json",
+     success:function(data){
+        var singer,songGenre,songName,songID,idkey=0;
+        jQuery.each(data, function(index, value){
+            console.log(value);
+            songName=data[index].song_name;
+            singer=data[index].singer_name;
+            songGenre=data[index].genre;
+            songID=data[index].id;
+            $("#songTable").append("<tr><td> " + songID + "</td><td>"+ songName + "</td><td>"+ singer + "</td><td>" + songGenre + '</td><td><a href="edit.html?'+songID+'"><input type="button" value="Edit"/></a></td></tr>');
+            });
+    }
+ });
+$.ajax({
+     url:"http://localhost:3000/channels.json",
+     success:function(data){
+        var channelUrl,songsId,idkey=0;
+        jQuery.each(data, function(index, value){
+            console.log(value);
+            channelUrl=data[index].url;
+            songsID=data[index].song_id;
+            $("#channelTable").append("<tr><td> " + channelUrl + "</td><td>"+ songsID + "</td><td>" + '</td></tr>');
+            idkey=idkey+1;
+        });
+     }
+ });
+</script>
+</body>
+</html>
