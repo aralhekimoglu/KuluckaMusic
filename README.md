@@ -12,4 +12,4 @@ This website allows you to add different channels(instruments) of a song and con
 
 ## Back-end stack
 
-Ruby on Rails
+* Ruby on Rails
